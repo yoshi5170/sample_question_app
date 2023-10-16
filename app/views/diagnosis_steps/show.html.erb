@@ -1,2 +1,13 @@
-<h1>DiagnosisSteps#show</h1>
-<p>Find me in app/views/diagnosis_steps/show.html.erb</p>
+<%= form_for @user_choice, url: wizard_path, method: :put do |f| %>
+  <h2><%= @question.question_text %></h2>
+  <% @question.choices.each do |choice| %>
+    <%= f.radio_button :choice_id, choice.id, checked: @user_choice&.choice_id == choice.id %>
+    <%= choice.choice_text %><br>
+  <% end %>
+
+  <%= f.submit step == steps.last ? "結果を表示" : "次へ" %>
+
+  <% unless step == steps.first %>
+    <%= link_to "戻る", previous_wizard_path %>
+  <% end %>
+<% end %>
