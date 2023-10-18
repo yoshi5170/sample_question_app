@@ -11,7 +11,8 @@ class QuestionsController < ApplicationController
   end
 
   def result
-    @total_score = session[:total_score]
+    total_score = session[:total_score]
+    @diagnosis_result = Result.find_by("min_score <= ? AND max_score >= ?", total_score, total_score)
     session.delete(:total_score)
   end
 
