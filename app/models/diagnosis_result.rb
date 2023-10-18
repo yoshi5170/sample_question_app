@@ -1,2 +1,0 @@
-class DiagnosisResult < ApplicationRecord
-end
