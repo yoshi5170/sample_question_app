@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root 'static_pages#top'
   get 'static_pages/top'
-  resources :diagnosis_steps, only: [:show, :update]
+  resources :questions, only: [:index, :create] do
+    collection do
+      get :result
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
