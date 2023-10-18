@@ -1,3 +1,3 @@
-class DiagnosisQuestion < ApplicationRecord
+class Question < ApplicationRecord
   has_many :choices, dependent: :destroy
 end

@@ -1,0 +1,26 @@
+<button id="start-diagnosis" type="button">診断を始める</button>
+
+<%= form_with(scope: :result, url: questions_path, method: :post, local: true) do |f| %>
+
+  <h2>あなたの秘密の個性を探る10の質問</h2>
+
+  <% @questions.each_with_index do |question, index| %>
+    <div class='error-message hidden' id="error_<%= question.id %>">選択してください</div>
+    <div id='question_<%=question.id%>', class='hidden'>
+      <p><%= question.text %></p>
+      <% question.choices.each do |choice| %>
+        <div>
+          <%= f.radio_button "answer_#{question.id}", choice.score %>
+          <%= f.label :answer, choice.text, value: choice.score %>
+        </div>
+      <% end %>
+      <% unless index == @questions.length - 1 %>
+        <button type="button" data-action="next-question" id='button_<%=question.id%>'>次へ</button>
+      <% end %>
+      <% unless index == @questions.length - 10 %>
+        <button type="button" data-action="previous-question" id='button_<%=question.id%>'>戻る</button>
+      <% end %>
+    </div>
+  <% end %>
+  <%= f.submit "診断する", class: 'hidden', id: "submit-button" %>
+<% end %>
