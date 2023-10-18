@@ -1,0 +1,21 @@
+databases:
+  - name: personal-shindan-app_DB
+    databaseName: personal_shindan_app_db
+    user: personal-shindan-app
+    region: singapore
+
+services:
+  - type: web
+    name: personal-shindan-app
+    env: ruby
+    region: singapore
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: personal-shindan-app
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
