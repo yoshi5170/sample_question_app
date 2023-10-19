@@ -1,26 +1,33 @@
-<button id="start-diagnosis" type="button">診断を始める</button>
-
-<%= form_with(scope: :result, url: questions_path, method: :post, local: true) do |f| %>
-
-  <h2>あなたの秘密の個性を探る10の質問</h2>
-
-  <% @questions.each_with_index do |question, index| %>
-    <div class='error-message hidden' id="error_<%= question.id %>">選択してください</div>
-    <div id='question_<%=question.id%>', class='hidden'>
-      <p><%= question.text %></p>
-      <% question.choices.each do |choice| %>
-        <div>
-          <%= f.radio_button "answer_#{question.id}", choice.score %>
-          <%= f.label :answer, choice.text, value: choice.score %>
+<div class="bg-diagnosis min-h-screen text-customBlue font-mono flex flex-col items-center justify-center">
+  <h2 id="start-description" class="text-2xl font-extrabold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-customBlue to-customPurple">✨あなたの秘密の個性を探る10の質問✨</h2>
+  <button id="start-diagnosis" type="button" class='bg-customBlue3 text-customBlue4 text-sm mt-10 mb-2 py-2 px-4 border-2 border-customSky5 rounded-xl hover:bg-customSky5 hover:border-customBlue3'>診断する</button>
+  <div class="w-full">
+    <%= form_with(scope: :result, url: questions_path, method: :post, local: true,class: 'w-full ') do |f| %>
+      <div class='error-message hidden px-10 py-2 mb-10 mx-10 text-sm text-red-800 bg-red-100 rounded-xl dark:bg-red-100 dark:text-red-800' id="error_message">選択してください</div>
+      <% @questions.each_with_index do |question, index| %>
+        <div id='question_<%= question.id %>', class='hidden lg:w-1/3 md:w-4/5 sm:w-5/6 flex flex-col items-center justify-center text-customOrange mx-auto w-full px-8 py-2 bg-customBlue3 border-2 border-customOrange rounded-2xl drop-shadow-xl'>
+          <p class="my-10 text-2xl font-bold tracking-wide text-white"><%= question.text %></p>
+          <div class="container w-full sm:w-2/5 sm:mx-auto ">
+            <% question.choices.each do |choice| %>
+              <div class="mt-2 w-5/6 sm:w-48 sm:mx-auto text-customOrange">
+                <%= f.radio_button "answer_#{question.id}", choice.score, class:'border-2 border-customOrange bg-customOrange4' %>
+                <%= f.label :answer, choice.text, value: choice.score, class:'ml-2 text-base'%>
+              </div>
+            <% end %>
+          </div>
+          <div class="flex justify-evenly text-customBrown5">
+            <% unless index == @questions.length - 10 %>
+              <button type="button" data-action="previous-question" id='button_<%=question.id%>' class='bg-customSky border-2 border-customSky3 mt-10 mb-4 mx-2 py-2 px-6 rounded-full drop-shadow-xl text-sm hover:bg-customSky3 hover:border-customSky hover:border-2'>戻る</button>
+            <% end %>
+            <% unless index == @questions.length - 1 %>
+              <button type="button" data-action="next-question" id='button_<%=question.id%>' class=' bg-customSky2 border-2 border-customSky4 mt-10 mb-4 mx-2 py-2 px-6 rounded-full drop-shadow-xl text-sm hover:bg-customSky4 hover:border-customSky2 hover:border-2'>次へ</button>
+            <% end %>
+          </div>
         </div>
       <% end %>
-      <% unless index == @questions.length - 1 %>
-        <button type="button" data-action="next-question" id='button_<%=question.id%>'>次へ</button>
-      <% end %>
-      <% unless index == @questions.length - 10 %>
-        <button type="button" data-action="previous-question" id='button_<%=question.id%>'>戻る</button>
-      <% end %>
-    </div>
-  <% end %>
-  <%= f.submit "診断する", class: 'hidden', id: "submit-button" %>
-<% end %>
+      <div class="flex justify-evenly text-customOrange3">
+        <%= f.submit "診断結果", data: { action: "submit-button" }, class: 'hidden bg-customBlue3 text-customBlue4 text-sm mt-10 mb-2 py-2 px-4 border-2 border-customSky5 rounded-xl hover:bg-customSky5 hover:border-customBlue3', id: 'submit-button' %>
+      </div>
+    <% end %>
+  </div>
+</div>

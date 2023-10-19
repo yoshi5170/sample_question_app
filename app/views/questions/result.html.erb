@@ -1,2 +1,16 @@
-<h2>あなたの診断結果:</h2>
-<p><%= @diagnosis_result.description %></p>
+<div class="result-image text-2xl sm:text-4xl font-mono h-screen font-mono flex flex-col items-center justify-center">
+  <div class="my-10 font-extrabold">
+    <h2 class="tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-customBlue to-customPurple">⭐️あなたの診断結果⭐️</h2>
+  </div>
+  <div>
+    <p class="container mx-auto w-2/3 text-base font-light sm:text-lg text-center text-customBlue5 sm:w-2/3 md:w-3/5 lg:w-1/2" ><%= @diagnosis_result.description%></p>
+  </div>
+  <div class="bg-customBlue3 text-customBlue4 text-sm mt-10 mb-2 py-2 px-4 border-2 border-customSky5 rounded-xl hover:bg-customSky5 hover:border-customBlue3">
+    <%= link_to "もう一度診断する", questions_path%>
+  </div>
+  <div class="twitter text-sm text-gray-700 my-6 py-1 px-4 border-2 border-gray-500 rounded-xl hover:bg-gray-200">
+    <%= link_to "https://personal-shindan-app.onrender.com&text=【診断結果】%0a%0a#{ @diagnosis_result.description}", target: '_blank' do %>
+      <i class="fa-brands fa-x-twitter"></i>シェア
+    <% end %>
+  </div>
+</div>
