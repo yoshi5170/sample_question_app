@@ -2,8 +2,9 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "@fortawesome/fontawesome-free/js/all";
+Turbo.session.drive = false;
 
-document.addEventListener("turbo:load", () => {
+document.addEventListener("DOMContentLoaded", () => {
   let currentQuestion = 1;
   const totalQuestions = 10;
 
