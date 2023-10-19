@@ -9,7 +9,7 @@
     <%= link_to "もう一度診断する", questions_path%>
   </div>
   <div class="twitter text-sm text-gray-700 my-6 py-1 px-4 border-2 border-gray-500 rounded-xl hover:bg-gray-200">
-    <%= link_to "https://personal-shindan-app.onrender.com&text=【診断結果】%0a%0a#{ @diagnosis_result.description}", target: '_blank' do %>
+    <%= link_to "https://twitter.com/share?url=https://personal-shindan-app.onrender.com&text=【診断結果】%0a%0a#{ @diagnosis_result.description}", target: '_blank' do %>
       <i class="fa-brands fa-x-twitter"></i>シェア
     <% end %>
   </div>
