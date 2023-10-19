@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'static_pages#top'
+  root 'questions#index'
   get 'static_pages/top'
   resources :questions, only: [:index, :create] do
     collection do
