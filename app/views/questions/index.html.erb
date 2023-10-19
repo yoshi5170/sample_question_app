@@ -1,5 +1,5 @@
 <div class="bg-diagnosis min-h-screen text-customBlue font-mono flex flex-col items-center justify-center">
-  <h2 id="start-description" class="text-2xl font-extrabold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-customBlue to-customPurple">✨あなたの秘密の個性を探る10の質問✨</h2>
+  <h2 id="start-description" class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-customBlue to-customPurple sm:tracking-wider sm:font-extrabold sm:text-2xl">✨あなたの秘密の個性を探る10の質問✨</h2>
   <button id="start-diagnosis" type="button" class='bg-customBlue3 text-customBlue4 text-sm mt-10 mb-2 py-2 px-4 border-2 border-customSky5 rounded-xl hover:bg-customSky5 hover:border-customBlue3'>診断する</button>
   <div class="w-full">
     <%= form_with(scope: :result, url: questions_path, method: :post, local: true,class: 'w-full ') do |f| %>
