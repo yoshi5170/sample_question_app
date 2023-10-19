@@ -23,11 +23,11 @@ document.addEventListener("turbo:load", () => {
 
       if (!selectedOption) {
       // 選択されていない場合はエラーメッセージを表示して処理を終了
-        document.getElementById(`error_${currentQuestion}`).classList.remove('hidden');
+        document.getElementById(`error_message`).classList.remove('hidden');
         return;
       } else {
         // 選択されている場合は、エラーメッセージが表示されている場合は隠す
-        document.getElementById(`error_${currentQuestion}`).classList.add('hidden');
+        document.getElementById(`error_message`).classList.add('hidden');
       }
 
       document.getElementById(`question_${currentQuestion}`).classList.add('hidden');
@@ -52,11 +52,11 @@ document.addEventListener("turbo:load", () => {
 
       if (!selectedOption) {
         event.preventDefault();  // サブミットを抑制
-        document.getElementById(`error_${currentQuestion}`).classList.remove('hidden');
+        document.getElementById(`error_message`).classList.remove('hidden');
         return;
       } else {
         // 選択されている場合は、エラーメッセージが表示されている場合は隠す
-        document.getElementById(`error_${currentQuestion}`).classList.add('hidden');
+        document.getElementById(`error_message`).classList.add('hidden');
       }
     }
   });
