@@ -45,4 +45,19 @@ document.addEventListener("turbo:load", () => {
       document.getElementById(`question_${currentQuestion}`).classList.remove('hidden');
     }
   });
+
+  document.addEventListener('click', (event) => {
+    if (event.target.dataset.action === "submit-button") {
+      const selectedOption = document.querySelector(`input[name="result[answer_${currentQuestion}]"]:checked`);
+
+      if (!selectedOption) {
+        event.preventDefault();  // サブミットを抑制
+        document.getElementById(`error_${currentQuestion}`).classList.remove('hidden');
+        return;
+      } else {
+        // 選択されている場合は、エラーメッセージが表示されている場合は隠す
+        document.getElementById(`error_${currentQuestion}`).classList.add('hidden');
+      }
+    }
+  });
 });
